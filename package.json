@@ -1,0 +1,54 @@
+{
+  "name": "eslint-config-pcp",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "pinkchampagne",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --clean --dts --format=esm,cjs",
+    "dev": "pnpm run build --watch --onSuccess \"pnpm run lint:cache\"",
+    "lint": "env TIMING=1 ESLINT_USE_FLAT_CONFIG=true eslint .",
+    "lint:cache": "pnpm run lint --cache",
+    "lint:editor": "env VSCODE_PID=1 pnpm run lint",
+    "lint:fix": "pnpm run lint --fix"
+  },
+  "peerDependencies": {
+    "eslint": ">= 8"
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.21",
+    "@eslint/js": "^8.50.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "ci-info": "^3.9.0",
+    "eslint-config-flat-gitignore": "^0.1.0",
+    "eslint-plugin-import": "npm:eslint-plugin-i@^2.28.1",
+    "eslint-plugin-no-autofix": "^1.2.3",
+    "eslint-plugin-perfectionist": "^2.1.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "globals": "^13.23.0",
+    "local-pkg": "^0.5.0"
+  },
+  "devDependencies": {
+    "@pinkchampagne/prettier-config": "^1.0.0",
+    "@pinkchampagne/tsconfig": "^1.0.0",
+    "@types/eslint": "^8.44.9",
+    "@types/node": "^20.8.2",
+    "eslint": "^8.50.0",
+    "prettier": "^3.1.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.2.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "hasown": "npm:@nolyfill/hasown@latest"
+    }
+  }
+}
