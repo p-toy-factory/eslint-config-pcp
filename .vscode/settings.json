@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["antfu", "autofix", "pinkchampagne", "tsup"]
+  "cSpell.words": ["antfu", "autofix", "pinkchampagne", "tsup"],
+  "eslint.experimental.useFlatConfig": true
 }
