@@ -3,7 +3,9 @@ import { buildConfig } from "./dist/index.cjs";
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
-	...buildConfig(),
+	...buildConfig({
+		perfectionist: true,
+	}),
 	{
 		rules: {
 			"no-autofix/perfectionist/sort-objects": [

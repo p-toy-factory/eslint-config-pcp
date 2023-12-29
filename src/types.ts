@@ -18,7 +18,7 @@ export interface BuildConfigOptions {
 	jsonc?: boolean | Parameters<typeof jsonc>[0];
 	/** @default true */
 	node?: boolean;
-	/** @default true */
+	/** @default false */
 	perfectionist?: boolean | PerfectionistESLintConfigBuilderOptions;
 	/** @default true */
 	sortImport?: boolean;

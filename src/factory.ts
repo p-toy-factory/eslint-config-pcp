@@ -32,7 +32,7 @@ export function buildConfig(options: BuildConfigOptions = {}): FlatConfig[] {
 		javascript: javascriptOptions,
 		jsonc: enableJsonc = true,
 		node: enableNode = true,
-		perfectionist: enablePerfectionist = true,
+		perfectionist: enablePerfectionist = false,
 		sortImport: enableSortImport = true,
 		sortPackageJson: enableSortPackageJson = true,
 		sortTsconfig: enableSortTsconfig = true,
