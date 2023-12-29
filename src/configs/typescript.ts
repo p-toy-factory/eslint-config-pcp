@@ -32,6 +32,13 @@ export function typescript({
 						"ts-nocheck": false,
 					},
 				],
+
+				/** @see https://typescript-eslint.io/rules/no-redeclare */
+				"no-redeclare": "off",
+
+				/** @see https://typescript-eslint.io/rules/no-unused-vars */
+				"no-unused-vars": "off",
+				"@typescript-eslint/no-unused-vars": "error",
 			},
 		},
 		...(enableSortImport ? typescriptImport() : []),
