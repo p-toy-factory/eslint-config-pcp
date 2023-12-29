@@ -22,29 +22,29 @@
     "eslint": ">= 8"
   },
   "dependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.21",
-    "@eslint/js": "^8.50.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.7.4",
-    "ci-info": "^3.9.0",
-    "eslint-config-flat-gitignore": "^0.1.0",
-    "eslint-plugin-import": "npm:eslint-plugin-i@^2.28.1",
+    "@antfu/eslint-config": "2.6.1",
+    "@eslint/js": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "ci-info": "^4.0.0",
+    "eslint-config-flat-gitignore": "^0.1.2",
+    "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.1",
     "eslint-plugin-no-autofix": "^1.2.3",
-    "eslint-plugin-perfectionist": "^2.1.0",
+    "eslint-plugin-perfectionist": "^2.5.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "globals": "^13.23.0",
+    "globals": "^13.24.0",
     "local-pkg": "^0.5.0"
   },
   "devDependencies": {
     "@pinkchampagne/prettier-config": "^1.0.0",
     "@pinkchampagne/tsconfig": "^1.0.0",
-    "@types/eslint": "^8.44.9",
-    "@types/node": "^20.8.2",
-    "eslint": "^8.50.0",
+    "@types/eslint": "^8.56.0",
+    "@types/node": "^20.10.5",
+    "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "tsup": "^8.0.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "pnpm": {
     "overrides": {

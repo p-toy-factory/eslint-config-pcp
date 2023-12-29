@@ -24,7 +24,9 @@ function resolveOptions<T extends object>(options?: T | true): T | undefined {
 	return typeof options === "boolean" ? undefined : options;
 }
 
-export function buildConfig(options: BuildConfigOptions = {}): FlatConfig[] {
+export async function buildConfig(
+	options: BuildConfigOptions = {},
+): Promise<FlatConfig[]> {
 	const hasEditorEnv = Boolean(env.VSCODE_PID || env.JETBRAINS_IDE);
 	const {
 		gitignore: enableGitignore = fs.existsSync(".gitignore"),
@@ -46,32 +48,34 @@ export function buildConfig(options: BuildConfigOptions = {}): FlatConfig[] {
 		);
 	}
 
-	return (
-		[
-			ignores(),
-			enableGitignore && gitignore(resolveOptions(enableGitignore)),
+	const configs = [
+		ignores(),
+		enableGitignore && gitignore(resolveOptions(enableGitignore)),
 
-			javascript({ enableSortImport, isInEditor, ...javascriptOptions }),
-			enableNode && node(),
-			enablePerfectionist &&
-				perfectionist({ isInEditor, ...resolveOptions(enablePerfectionist) }),
-			enableUnicorn && unicorn(),
+		javascript({ enableSortImport, isInEditor, ...javascriptOptions }),
+		enableNode && node(),
+		enablePerfectionist &&
+			perfectionist({ isInEditor, ...resolveOptions(enablePerfectionist) }),
+		enableUnicorn && unicorn(),
 
-			enableTypeScript &&
-				typescript({
-					enableSortImport,
-					...resolveOptions(enableTypeScript),
-				}),
+		enableTypeScript &&
+			typescript({
+				enableSortImport,
+				...resolveOptions(enableTypeScript),
+			}),
 
-			enableJsonc &&
-				jsonc({
-					stylistic: false,
-					...resolveOptions(enableJsonc),
-				}),
-			enableSortPackageJson && sortPackageJson(),
-			enableSortTsconfig && sortTsconfig(),
-		] as Array<boolean | FlatConfig | FlatConfig[]>
-	)
+		enableJsonc &&
+			jsonc({
+				stylistic: false,
+				...resolveOptions(enableJsonc),
+			}),
+		enableSortPackageJson && sortPackageJson(),
+		enableSortTsconfig && sortTsconfig(),
+	] as Array<
+		boolean | FlatConfig | FlatConfig[] | Promise<FlatConfig | FlatConfig[]>
+	>;
+
+	return (await Promise.all(configs))
 		.flat()
 		.filter((item): item is FlatConfig => typeof item === "object")
 		.map((config) => {
