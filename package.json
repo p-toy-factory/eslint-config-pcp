@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-pcp",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0-beta.1",
   "description": "",
   "author": "pinkchampagne",
   "main": "./dist/index.cjs",
