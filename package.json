@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-pcp",
   "type": "module",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.3",
   "description": "",
   "author": "pinkchampagne",
   "main": "./dist/index.cjs",
@@ -16,7 +16,8 @@
     "lint": "env TIMING=1 ESLINT_USE_FLAT_CONFIG=true eslint .",
     "lint:cache": "pnpm run lint --cache",
     "lint:editor": "env VSCODE_PID=1 pnpm run lint",
-    "lint:fix": "pnpm run lint --fix"
+    "lint:fix": "pnpm run lint --fix",
+    "release": "pnpm run build && npm publish"
   },
   "peerDependencies": {
     "eslint": ">= 8"
