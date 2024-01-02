@@ -4,6 +4,7 @@ import type { FlatGitignoreOptions } from "eslint-config-flat-gitignore";
 
 import type { JavascriptESLintConfigBuilderOptions } from "./configs/javascript";
 import type { PerfectionistESLintConfigBuilderOptions } from "./configs/perfectionist";
+import { ReactESLintConfigBuilderOptions } from "./configs/react";
 import type { TypescriptESLintConfigBuilderOptions } from "./configs/typescript";
 
 export interface FlatConfig extends Linter.FlatConfig {
@@ -20,7 +21,7 @@ export interface BuildConfigOptions {
 	node?: boolean;
 	/** @default false */
 	perfectionist?: boolean | PerfectionistESLintConfigBuilderOptions;
-	/** @default true */
+	react?: boolean | ReactESLintConfigBuilderOptions;
 	sortImport?: boolean;
 	/**
 	 * @default true

@@ -15,6 +15,7 @@ import { isPackageExists } from "local-pkg";
 
 import { javascript } from "./configs/javascript";
 import { perfectionist } from "./configs/perfectionist";
+import { react } from "./configs/react";
 import { typescript } from "./configs/typescript";
 import { BuildConfigOptions, FlatConfig } from "./types";
 
@@ -35,6 +36,7 @@ export async function buildConfig(
 		jsonc: enableJsonc = true,
 		node: enableNode = true,
 		perfectionist: enablePerfectionist = false,
+		react: enableReact = isPackageExists("react"),
 		sortImport: enableSortImport = true,
 		sortPackageJson: enableSortPackageJson = true,
 		sortTsconfig: enableSortTsconfig = true,
@@ -63,6 +65,8 @@ export async function buildConfig(
 				enableSortImport,
 				...resolveOptions(enableTypeScript),
 			}),
+
+		enableReact && react(resolveOptions(enableReact)),
 
 		enableJsonc &&
 			jsonc({
