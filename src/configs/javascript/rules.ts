@@ -3,6 +3,7 @@ import js from "@eslint/js";
 import type { Linter } from "eslint";
 
 export const rules: Linter.RulesRecord = {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	...js.configs.recommended.rules,
 	"dot-notation": "error",
 	eqeqeq: "error",

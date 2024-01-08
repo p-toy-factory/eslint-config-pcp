@@ -29,6 +29,7 @@ export async function react({
 				"react-hooks": eslintPluginReactHooks,
 			},
 			rules: {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				...eslintPluginReactHooks.configs.recommended.rules,
 				...overrides,
 			},

@@ -19,6 +19,7 @@ export async function storybook({
 		import("eslint-plugin-storybook"),
 	);
 	const [config1, config2] =
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		eslintPluginStorybook.configs.recommended.overrides;
 
 	return [
@@ -29,6 +30,7 @@ export async function storybook({
 				storybook: eslintPluginStorybook,
 			},
 			rules: {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 				...config1.rules,
 				...overrides,
 			},
