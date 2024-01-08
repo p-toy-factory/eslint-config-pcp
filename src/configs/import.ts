@@ -27,6 +27,7 @@ export function typescriptImport(): FlatConfig[] {
 			plugins: {
 				import: importESLintPlugin,
 			},
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			...importESLintPlugin.configs.typescript,
 		},
 		{
