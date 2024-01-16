@@ -5,6 +5,7 @@ import type { FlatGitignoreOptions } from "eslint-config-flat-gitignore";
 import type { JavascriptESLintConfigBuilderOptions } from "./configs/javascript";
 import type { PerfectionistESLintConfigBuilderOptions } from "./configs/perfectionist";
 import { ReactESLintConfigBuilderOptions } from "./configs/react";
+import { StorybookESLintConfigBuilderOptions } from "./configs/storybook";
 import type { TypescriptESLintConfigBuilderOptions } from "./configs/typescript";
 
 export interface FlatConfig extends Linter.FlatConfig {
@@ -33,6 +34,10 @@ export interface BuildConfigOptions {
 	 * @requires `jsonc` is `true`
 	 */
 	sortTsconfig?: boolean;
+	/**
+	 * @default false
+	 */
+	storybook?: boolean | StorybookESLintConfigBuilderOptions;
 	typescript?: boolean | TypescriptESLintConfigBuilderOptions;
 	unicorn?: boolean;
 }

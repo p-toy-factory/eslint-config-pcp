@@ -16,6 +16,7 @@ import { isPackageExists } from "local-pkg";
 import { javascript } from "./configs/javascript";
 import { perfectionist } from "./configs/perfectionist";
 import { react } from "./configs/react";
+import { storybook } from "./configs/storybook";
 import { typescript } from "./configs/typescript";
 import { BuildConfigOptions, FlatConfig } from "./types";
 
@@ -40,6 +41,7 @@ export async function buildConfig(
 		sortImport: enableSortImport = true,
 		sortPackageJson: enableSortPackageJson = true,
 		sortTsconfig: enableSortTsconfig = true,
+		storybook: enableStorybook = false,
 		typescript: enableTypeScript = isPackageExists("typescript"),
 		unicorn: enableUnicorn = true,
 	} = options;
@@ -75,6 +77,7 @@ export async function buildConfig(
 			}),
 		enableSortPackageJson && sortPackageJson(),
 		enableSortTsconfig && sortTsconfig(),
+		enableStorybook && storybook(resolveOptions(enableStorybook)),
 	] as Array<
 		boolean | FlatConfig | FlatConfig[] | Promise<FlatConfig | FlatConfig[]>
 	>;
