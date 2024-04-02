@@ -1,8 +1,10 @@
 {
   "extends": "@pinkchampagne/tsconfig",
   "compilerOptions": {
+    "outDir": "dist",
+    "removeComments": true,
     "resolveJsonModule": true,
-    "outDir": "dist"
+    "sourceMap": true
   },
   "include": ["src"]
 }

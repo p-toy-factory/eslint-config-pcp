@@ -4,14 +4,12 @@
   "version": "2.0.0-beta.4",
   "description": "",
   "author": "pinkchampagne",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "packageManager": "pnpm@8.15.6",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --clean --dts --format=esm,cjs",
+    "build": "bunchee",
     "dev": "pnpm run build --watch --onSuccess \"pnpm run lint:cache\"",
     "lint": "cross-env TIMING=1 ESLINT_USE_FLAT_CONFIG=true eslint .",
     "lint:cache": "pnpm run lint --cache",
@@ -48,6 +46,7 @@
     "@pinkchampagne/tsconfig": "^1.0.0",
     "@types/eslint": "^8.56.0",
     "@types/node": "^20.10.5",
+    "bunchee": "^5.1.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
@@ -57,6 +56,35 @@
   "pnpm": {
     "overrides": {
       "hasown": "npm:@nolyfill/hasown@latest"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./configs": {
+      "import": {
+        "types": "./dist/configs.d.ts",
+        "default": "./dist/configs.js"
+      }
+    },
+    "./factory": {
+      "import": {
+        "types": "./dist/factory.d.ts",
+        "default": "./dist/factory.js"
+      }
+    },
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./types": {
+      "import": {
+        "types": "./dist/types.d.ts",
+        "default": "./dist/types.js"
+      }
     }
   }
 }
