@@ -13,9 +13,9 @@
   "scripts": {
     "build": "tsup src/index.ts --clean --dts --format=esm,cjs",
     "dev": "pnpm run build --watch --onSuccess \"pnpm run lint:cache\"",
-    "lint": "env TIMING=1 ESLINT_USE_FLAT_CONFIG=true eslint .",
+    "lint": "cross-env TIMING=1 ESLINT_USE_FLAT_CONFIG=true eslint .",
     "lint:cache": "pnpm run lint --cache",
-    "lint:editor": "env VSCODE_PID=1 pnpm run lint",
+    "lint:editor": "cross-env VSCODE_PID=1 pnpm run lint",
     "lint:fix": "pnpm run lint --fix",
     "release": "pnpm run build && npm publish"
   },
@@ -48,6 +48,7 @@
     "@pinkchampagne/tsconfig": "^1.0.0",
     "@types/eslint": "^8.56.0",
     "@types/node": "^20.10.5",
+    "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
     "tsup": "^8.0.1",
