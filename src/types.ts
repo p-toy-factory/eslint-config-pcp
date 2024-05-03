@@ -23,6 +23,7 @@ export interface BuildConfigOptions {
 	/** @default false */
 	perfectionist?: boolean | PerfectionistESLintConfigBuilderOptions;
 	react?: boolean | ReactESLintConfigBuilderOptions;
+	/** @default true */
 	sortImport?: boolean;
 	/**
 	 * @default true
@@ -39,5 +40,6 @@ export interface BuildConfigOptions {
 	 */
 	storybook?: boolean | StorybookESLintConfigBuilderOptions;
 	typescript?: boolean | TypescriptESLintConfigBuilderOptions;
+	/** @default true */
 	unicorn?: boolean;
 }
