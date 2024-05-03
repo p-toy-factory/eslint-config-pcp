@@ -63,6 +63,6 @@ export async function typescript({
 				],
 			},
 		},
-		...(enableSortImport ? typescriptImport() : []),
+		...(enableSortImport ? await typescriptImport() : []),
 	];
 }

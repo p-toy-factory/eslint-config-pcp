@@ -6,12 +6,12 @@ import { unusedImportsESLintPlugin } from "../plugins";
 import { rules } from "./rules";
 import { JavascriptESLintConfigBuilderOptions } from "./types";
 
-export function javascript({
+export async function javascript({
 	enableSortImport = true,
 	env,
 	files,
 	isInEditor = false,
-}: JavascriptESLintConfigBuilderOptions): FlatConfig[] {
+}: JavascriptESLintConfigBuilderOptions): Promise<FlatConfig[]> {
 	const { browser = true, greasemonkey = false, node = true } = env ?? {};
 	return [
 		{
@@ -39,6 +39,6 @@ export function javascript({
 				"unused-imports/no-unused-imports": isInEditor ? "off" : "error",
 			},
 		},
-		...(enableSortImport ? javascriptImport() : []),
+		...(enableSortImport ? await javascriptImport() : []),
 	];
 }

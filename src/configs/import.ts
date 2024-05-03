@@ -1,18 +1,28 @@
-import { FlatConfig } from "../types";
-import { importESLintPlugin, simpleImportSortESLintPlugin } from "./plugins";
+import { interopDefault } from "@antfu/eslint-config";
 
-export function javascriptImport(): FlatConfig[] {
+import { FlatConfig } from "../types";
+
+export async function javascriptImport(): Promise<FlatConfig[]> {
+	const [importESLintPlugin, simpleImportSortESLintPlugin] = await Promise.all(
+		[
+			import("eslint-plugin-import-x"),
+			import("eslint-plugin-simple-import-sort"),
+		].map(interopDefault),
+	);
+
 	return [
 		{
 			name: "pinkchampagne:javascript:import",
 			plugins: {
-				import: importESLintPlugin,
+				// @ts-expect-error It works
+				"import-x": importESLintPlugin,
+				// @ts-expect-error It works
 				"simple-import-sort": simpleImportSortESLintPlugin,
 			},
 			rules: {
-				"import/first": "error",
-				"import/newline-after-import": "off", // TODO: Broken in eslint v9
-				"import/no-duplicates": "off", // TODO: Broken in eslint v9
+				"import-x/first": "error",
+				"import-x/newline-after-import": "error",
+				"import-x/no-duplicates": "error",
 				"simple-import-sort/exports": "error",
 				"simple-import-sort/imports": "error",
 			},
@@ -20,25 +30,14 @@ export function javascriptImport(): FlatConfig[] {
 	];
 }
 
-export function typescriptImport(): FlatConfig[] {
+export async function typescriptImport(): Promise<FlatConfig[]> {
+	const importESLintPlugin = await interopDefault(
+		import("eslint-plugin-import-x"),
+	);
 	return [
 		{
 			name: "pinkchampagne:typescript:import",
-			plugins: {
-				import: importESLintPlugin,
-			},
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			...importESLintPlugin.configs.typescript,
-		},
-		{
-			name: "pinkchampagne:typescript:import:overrides",
-			settings: {
-				// https://github.com/un-es/eslint-plugin-i#typescript
-				"import/resolver": {
-					node: true,
-					typescript: true,
-				},
-			},
 		},
 	];
 }
