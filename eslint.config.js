@@ -1,5 +1,5 @@
 // @ts-check
-import { buildConfig } from "./dist/index.cjs";
+import { buildConfig } from "./dist/index.js";
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [

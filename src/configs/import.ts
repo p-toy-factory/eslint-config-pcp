@@ -11,8 +11,8 @@ export function javascriptImport(): FlatConfig[] {
 			},
 			rules: {
 				"import/first": "error",
-				"import/newline-after-import": "error",
-				"import/no-duplicates": "error",
+				"import/newline-after-import": "off", // TODO: Broken in eslint v9
+				"import/no-duplicates": "off", // TODO: Broken in eslint v9
 				"simple-import-sort/exports": "error",
 				"simple-import-sort/imports": "error",
 			},
