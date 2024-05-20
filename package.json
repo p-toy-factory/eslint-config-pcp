@@ -2,7 +2,7 @@
   "name": "eslint-config-pcp",
   "type": "module",
   "version": "2.0.0-beta.4",
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.1.2",
   "description": "",
   "author": "pinkchampagne",
   "exports": {
