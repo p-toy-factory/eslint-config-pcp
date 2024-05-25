@@ -1,8 +1,8 @@
+import { interopDefault } from "@antfu/eslint-config";
 import globals from "globals";
 
 import { FlatConfig } from "../../types";
 import { javascriptImport } from "../import";
-import { unusedImportsESLintPlugin } from "../plugins";
 import { rules } from "./rules";
 import { JavascriptESLintConfigBuilderOptions } from "./types";
 
@@ -13,6 +13,11 @@ export async function javascript({
 	isInEditor = false,
 }: JavascriptESLintConfigBuilderOptions): Promise<FlatConfig[]> {
 	const { browser = true, greasemonkey = false, node = true } = env ?? {};
+	const unusedImportsESLintPlugin = await interopDefault(
+		// @ts-expect-error No type declaration
+		import("eslint-plugin-unused-imports"),
+	);
+
 	return [
 		{
 			name: "pcp/javascript",

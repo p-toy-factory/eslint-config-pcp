@@ -1,14 +1,24 @@
+import { interopDefault } from "@antfu/eslint-config";
+
 import { FlatConfig } from "../types";
-import { noAutoFixESLintPlugin, perfectionistESLintPlugin } from "./plugins";
 
 export interface PerfectionistESLintConfigBuilderOptions {
 	/** @default false */
 	isInEditor?: boolean;
 }
 
-export function perfectionist({
+export async function perfectionist({
 	isInEditor = false,
-}: PerfectionistESLintConfigBuilderOptions): FlatConfig[] {
+}: PerfectionistESLintConfigBuilderOptions): Promise<FlatConfig[]> {
+	const [noAutoFixESLintPlugin, perfectionistESLintPlugin] = await Promise.all(
+		[
+			// @ts-expect-error No type declaration
+			import("eslint-plugin-no-autofix"),
+			// @ts-expect-error No type declaration
+			import("eslint-plugin-perfectionist"),
+		].map(interopDefault),
+	);
+
 	return [
 		{
 			name: "pcp/perfectionist",
