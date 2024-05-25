@@ -12,7 +12,7 @@ export async function javascriptImport(): Promise<FlatConfig[]> {
 
 	return [
 		{
-			name: "pinkchampagne:javascript:import",
+			name: "pcp/javascript/import",
 			plugins: {
 				// @ts-expect-error It works
 				"import-x": importESLintPlugin,
@@ -36,7 +36,7 @@ export async function typescriptImport(): Promise<FlatConfig[]> {
 	);
 	return [
 		{
-			name: "pinkchampagne:typescript:import",
+			name: "pcp/typescript/import",
 			...importESLintPlugin.configs.typescript,
 		},
 	];

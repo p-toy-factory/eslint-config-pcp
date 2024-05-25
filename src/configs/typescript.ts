@@ -26,7 +26,7 @@ export async function typescript({
 	const configs = typescriptESLintPlugin.configs;
 	return [
 		{
-			name: "pinkchampagne:typescript",
+			name: "pcp/typescript",
 			files: files ?? [GLOB_TS, GLOB_TSX],
 			languageOptions: {
 				parser: typescriptESLintParser,

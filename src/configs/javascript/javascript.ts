@@ -15,7 +15,7 @@ export async function javascript({
 	const { browser = true, greasemonkey = false, node = true } = env ?? {};
 	return [
 		{
-			name: "pinkchampagne:javascript",
+			name: "pcp/javascript",
 			files,
 			languageOptions: {
 				globals: {
@@ -31,7 +31,7 @@ export async function javascript({
 		},
 		// eslint-plugin-unused-imports
 		{
-			name: "pinkchampagne:javascript:unused-imports",
+			name: "pcp/javascript/unused-imports",
 			plugins: {
 				"unused-imports": unusedImportsESLintPlugin,
 			},

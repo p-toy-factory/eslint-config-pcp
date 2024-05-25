@@ -11,7 +11,7 @@ export function perfectionist({
 }: PerfectionistESLintConfigBuilderOptions): FlatConfig[] {
 	return [
 		{
-			name: "pinkchampagne:perfectionist",
+			name: "pcp/perfectionist",
 			plugins: {
 				"no-autofix": noAutoFixESLintPlugin,
 				perfectionist: perfectionistESLintPlugin,
@@ -60,7 +60,7 @@ const defaultPerfectionistSortObjectRuleOptions = {
 
 const noAutoFixRulesConfig: FlatConfig[] = [
 	{
-		name: "pinkchampagne:perfectionist:no-autofix",
+		name: "pcp/perfectionist/no-autofix",
 		rules: {
 			"no-autofix/perfectionist/sort-interfaces": [
 				"warn",

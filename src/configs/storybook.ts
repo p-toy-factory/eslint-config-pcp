@@ -24,7 +24,7 @@ export async function storybook({
 
 	return [
 		{
-			name: "pinkchampagne:storybook",
+			name: "pcp/storybook",
 			files: files ?? ["**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
 			plugins: {
 				storybook: eslintPluginStorybook,

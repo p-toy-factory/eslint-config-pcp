@@ -23,7 +23,7 @@ export async function react({
 
 	return [
 		{
-			name: "pinkchampagne:react",
+			name: "pcp/react",
 			files: files ?? [GLOB_JSX, GLOB_TSX],
 			plugins: {
 				"react-hooks": eslintPluginReactHooks,
