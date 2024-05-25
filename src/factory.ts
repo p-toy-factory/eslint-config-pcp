@@ -52,42 +52,61 @@ export async function buildConfig(
 		);
 	}
 
-	const configs = [
-		ignores(),
-		enableGitignore && gitignore(resolveOptions(enableGitignore)),
+	const configsGenerator = function* () {
+		yield ignores();
 
-		javascript({ enableSortImport, isInEditor, ...javascriptOptions }),
-		enableNode && node(),
-		enablePerfectionist &&
-			perfectionist({ isInEditor, ...resolveOptions(enablePerfectionist) }),
-		enableUnicorn && unicorn(),
+		if (enableGitignore) {
+			yield gitignore(resolveOptions(enableGitignore));
+		}
 
-		enableTypeScript &&
-			typescript({
+		yield javascript({ enableSortImport, isInEditor, ...javascriptOptions });
+
+		if (enableNode) {
+			yield node();
+		}
+		if (enablePerfectionist) {
+			yield perfectionist({
+				isInEditor,
+				...resolveOptions(enablePerfectionist),
+			});
+		}
+		if (enableUnicorn) {
+			yield unicorn();
+		}
+		if (enableTypeScript) {
+			yield typescript({
 				enableSortImport,
 				...resolveOptions(enableTypeScript),
-			}),
-
-		enableReact && react(resolveOptions(enableReact)),
-
-		enableJsonc &&
-			jsonc({
+			});
+		}
+		if (enableReact) {
+			yield react(resolveOptions(enableReact));
+		}
+		if (enableJsonc) {
+			yield jsonc({
 				stylistic: false,
 				...resolveOptions(enableJsonc),
-			}),
-		enableSortPackageJson && sortPackageJson(),
-		enableSortTsconfig && sortTsconfig(),
-		enableStorybook && storybook(resolveOptions(enableStorybook)),
-	] as Array<
-		boolean | FlatConfig | FlatConfig[] | Promise<FlatConfig | FlatConfig[]>
-	>;
+			});
+		}
+		if (enableSortPackageJson) {
+			yield sortPackageJson();
+		}
+		if (enableSortTsconfig) {
+			yield sortTsconfig();
+		}
+		if (enableStorybook) {
+			yield storybook(resolveOptions(enableStorybook));
+		}
+	};
 
-	return (await Promise.all(configs))
+	return (await Promise.all(Array.from(configsGenerator())))
 		.flat()
-		.filter((item): item is FlatConfig => typeof item === "object")
 		.map((config) => {
-			// Remove `files` property if it's undefined
-			const { files, ...restConfig } = config;
-			return files ? config : restConfig;
+			if ("files" in config) {
+				// Remove `files` property if it is not `string` or `string[]`
+				const { files, ...restConfig } = config;
+				return files ? config : restConfig;
+			}
+			return config;
 		});
 }
