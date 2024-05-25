@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-pcp",
   "type": "module",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "packageManager": "pnpm@9.1.2",
   "description": "",
   "author": "pinkchampagne",
@@ -32,7 +32,8 @@
     "lint:cache": "pnpm run lint --cache",
     "lint:editor": "cross-env VSCODE_PID=1 pnpm run lint",
     "lint:fix": "pnpm run lint --fix",
-    "release": "pnpm run build && npm publish",
+    "prepublishOnly": "pnpm run test --run && pnpm run build && pnpm run lint",
+    "release": "npm publish",
     "test": "vitest"
   },
   "peerDependencies": {
