@@ -32,13 +32,13 @@ export async function buildConfig(
 	const hasEditorEnv = Boolean(env.VSCODE_PID || env.JETBRAINS_IDE);
 	const {
 		gitignore: enableGitignore = fs.existsSync(".gitignore"),
+		import: enableImport = true,
 		isInEditor = !isCI && hasEditorEnv,
 		javascript: javascriptOptions,
 		jsonc: enableJsonc = true,
 		node: enableNode = true,
 		perfectionist: enablePerfectionist = false,
 		react: enableReact = isPackageExists("react"),
-		sortImport: enableSortImport = true,
 		sortPackageJson: enableSortPackageJson = true,
 		sortTsconfig: enableSortTsconfig = true,
 		storybook: enableStorybook = false,
@@ -59,7 +59,11 @@ export async function buildConfig(
 			yield gitignore(resolveOptions(enableGitignore));
 		}
 
-		yield javascript({ enableSortImport, isInEditor, ...javascriptOptions });
+		yield javascript({
+			enableImport,
+			isInEditor,
+			...javascriptOptions,
+		});
 
 		if (enableNode) {
 			yield node();
@@ -75,7 +79,7 @@ export async function buildConfig(
 		}
 		if (enableTypeScript) {
 			yield typescript({
-				enableSortImport,
+				enableImport,
 				...resolveOptions(enableTypeScript),
 			});
 		}

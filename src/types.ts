@@ -14,6 +14,8 @@ export interface FlatConfig extends Linter.FlatConfig {
 
 export interface BuildConfigOptions {
 	gitignore?: boolean | FlatGitignoreOptions;
+	/** @default true */
+	import?: boolean;
 	isInEditor?: boolean;
 	javascript?: JavascriptESLintConfigBuilderOptions;
 	/** @default true */
@@ -23,8 +25,6 @@ export interface BuildConfigOptions {
 	/** @default false */
 	perfectionist?: boolean | PerfectionistESLintConfigBuilderOptions;
 	react?: boolean | ReactESLintConfigBuilderOptions;
-	/** @default true */
-	sortImport?: boolean;
 	/**
 	 * @default true
 	 * @requires `jsonc` is `true`

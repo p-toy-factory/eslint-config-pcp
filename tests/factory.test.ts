@@ -8,10 +8,10 @@ import { replacePluginWithKeys } from "./utils";
 describe("factory", () => {
 	test("build config with all options", async () => {
 		const config = await buildConfig({
+			import: true,
 			isInEditor: true,
 			perfectionist: true,
 			react: true,
-			sortImport: true,
 			storybook: true,
 			typescript: true,
 		});

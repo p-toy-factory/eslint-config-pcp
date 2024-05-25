@@ -7,7 +7,7 @@ import { rules } from "./rules";
 import { JavascriptESLintConfigBuilderOptions } from "./types";
 
 export async function javascript({
-	enableSortImport = true,
+	enableImport = true,
 	env,
 	files,
 	isInEditor = false,
@@ -39,6 +39,6 @@ export async function javascript({
 				"unused-imports/no-unused-imports": isInEditor ? "off" : "error",
 			},
 		},
-		...(enableSortImport ? await javascriptImport() : []),
+		...(enableImport ? await javascriptImport() : []),
 	];
 }

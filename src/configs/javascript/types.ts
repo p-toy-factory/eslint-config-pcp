@@ -1,6 +1,6 @@
 export interface JavascriptESLintConfigBuilderOptions {
 	/** @default true */
-	enableSortImport?: boolean;
+	enableImport?: boolean;
 	env?: JavascriptESLintConfigBuilderEnvOptions;
 	files?: string[];
 	/** @default false */

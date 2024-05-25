@@ -8,12 +8,12 @@ import { typescriptImport } from "./import";
 
 export interface TypescriptESLintConfigBuilderOptions {
 	/** @default true */
-	enableSortImport?: boolean;
+	enableImport?: boolean;
 	files?: string[];
 }
 
 export async function typescript({
-	enableSortImport = true,
+	enableImport = true,
 	files,
 }: TypescriptESLintConfigBuilderOptions = {}): Promise<FlatConfig[]> {
 	const [typescriptESLintPlugin, typescriptESLintParser] = await Promise.all([
@@ -63,6 +63,6 @@ export async function typescript({
 				],
 			},
 		},
-		...(enableSortImport ? await typescriptImport() : []),
+		...(enableImport ? await typescriptImport() : []),
 	];
 }
