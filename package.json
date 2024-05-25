@@ -31,7 +31,8 @@
     "lint:cache": "pnpm run lint --cache",
     "lint:editor": "cross-env VSCODE_PID=1 pnpm run lint",
     "lint:fix": "pnpm run lint --fix",
-    "release": "pnpm run build && npm publish"
+    "release": "pnpm run build && npm publish",
+    "test": "vitest"
   },
   "peerDependencies": {
     "eslint": ">= 9"
@@ -67,7 +68,8 @@
     "eslint": "^9.3.0",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "pnpm": {
     "overrides": {
