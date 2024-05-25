@@ -25,8 +25,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --clean --dts --format=esm,cjs",
-    "dev": "pnpm run build --watch --onSuccess \"pnpm run lint:cache\"",
+    "build": "pnpm run build:base --format=esm,cjs",
+    "build:base": "tsup src/index.ts --clean --dts",
+    "dev": "pnpm run build:base --format=esm --watch --onSuccess \"pnpm run lint:cache\"",
     "lint": "cross-env TIMING=1 eslint .",
     "lint:cache": "pnpm run lint --cache",
     "lint:editor": "cross-env VSCODE_PID=1 pnpm run lint",
