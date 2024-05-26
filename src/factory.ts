@@ -37,7 +37,7 @@ export async function buildConfig(
 		javascript: javascriptOptions,
 		jsonc: enableJsonc = true,
 		node: enableNode = true,
-		perfectionist: enablePerfectionist = false,
+		perfectionist: enablePerfectionist = true,
 		react: enableReact = isPackageExists("react"),
 		sortPackageJson: enableSortPackageJson = true,
 		sortTsconfig: enableSortTsconfig = true,

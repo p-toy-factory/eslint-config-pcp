@@ -1461,25 +1461,37 @@
       "perfectionist/sort-array-includes": [
         "error",
         {
+          "ignore-case": true,
           "spread-last": true,
           "type": "natural",
         },
       ],
-      "perfectionist/sort-exports": [
+      "perfectionist/sort-enums": [
         "error",
         {
+          "ignore-case": true,
+          "type": "natural",
+        },
+      ],
+      "perfectionist/sort-intersection-types": [
+        "error",
+        {
+          "ignore-case": true,
           "type": "natural",
         },
       ],
       "perfectionist/sort-maps": [
         "error",
         {
+          "ignore-case": true,
           "type": "natural",
         },
       ],
-      "perfectionist/sort-named-exports": [
+      "perfectionist/sort-union-types": [
         "error",
         {
+          "ignore-case": true,
+          "nullable-last": true,
           "type": "natural",
         },
       ],
@@ -1498,6 +1510,7 @@
             "id",
             "unknown",
           ],
+          "ignore-case": true,
           "type": "natural",
         },
       ],
@@ -1511,6 +1524,7 @@
             "id",
             "unknown",
           ],
+          "ignore-case": true,
           "type": "natural",
         },
       ],
@@ -1524,14 +1538,7 @@
             "id",
             "unknown",
           ],
-          "type": "natural",
-        },
-      ],
-      "no-autofix/perfectionist/sort-union-types": [
-        "warn",
-        {
           "ignore-case": true,
-          "nullable-last": true,
           "type": "natural",
         },
       ],

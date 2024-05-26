@@ -22,7 +22,7 @@ export interface BuildConfigOptions {
 	jsonc?: boolean | Parameters<typeof jsonc>[0];
 	/** @default true */
 	node?: boolean;
-	/** @default false */
+	/** @default true */
 	perfectionist?: boolean | PerfectionistESLintConfigBuilderOptions;
 	react?: boolean | ReactESLintConfigBuilderOptions;
 	/**

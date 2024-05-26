@@ -10,7 +10,9 @@ describe("factory", () => {
 		const config = await buildConfig({
 			import: true,
 			isInEditor: true,
-			perfectionist: true,
+			perfectionist: {
+				warningSortingInEditor: true,
+			},
 			react: true,
 			storybook: true,
 			typescript: true,

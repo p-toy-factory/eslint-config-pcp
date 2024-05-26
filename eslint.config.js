@@ -4,7 +4,9 @@ import { buildConfig } from "./dist/index.js";
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
 	...(await buildConfig({
-		perfectionist: true,
+		perfectionist: {
+			warningSortingInEditor: true,
+		},
 	})),
 	{
 		rules: {

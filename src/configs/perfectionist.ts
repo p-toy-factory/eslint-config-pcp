@@ -2,13 +2,21 @@ import { interopDefault } from "@antfu/eslint-config";
 
 import { FlatConfig } from "../types";
 
+const defaultOptions = {
+	"ignore-case": true,
+	type: "natural",
+};
+
 export interface PerfectionistESLintConfigBuilderOptions {
 	/** @default false */
 	isInEditor?: boolean;
+	/** @default false */
+	warningSortingInEditor?: boolean;
 }
 
 export async function perfectionist({
 	isInEditor = false,
+	warningSortingInEditor = false,
 }: PerfectionistESLintConfigBuilderOptions): Promise<FlatConfig[]> {
 	const [noAutoFixESLintPlugin, perfectionistESLintPlugin] = await Promise.all(
 		[
@@ -30,68 +38,48 @@ export async function perfectionist({
 				"perfectionist/sort-array-includes": [
 					"error",
 					{
+						...defaultOptions,
 						"spread-last": true,
-						type: "natural",
 					},
 				],
-				// TODO: sort-classes
-				"perfectionist/sort-exports": [
+				"perfectionist/sort-enums": ["error", defaultOptions],
+				"perfectionist/sort-intersection-types": ["error", defaultOptions],
+				"perfectionist/sort-maps": ["error", defaultOptions],
+				"perfectionist/sort-union-types": [
 					"error",
 					{
-						type: "natural",
-					},
-				],
-				// TODO: sort-jsx-props
-				"perfectionist/sort-maps": [
-					"error",
-					{
-						type: "natural",
-					},
-				],
-				"perfectionist/sort-named-exports": [
-					"error",
-					{
-						type: "natural",
+						...defaultOptions,
+						"nullable-last": true,
 					},
 				],
 			},
 		},
-		...(isInEditor ? noAutoFixRulesConfig : []),
+		...(warningSortingInEditor && isInEditor ? [noAutoFixRulesConfig] : []),
 	];
 }
 
 const defaultPerfectionistSortObjectRuleOptions = {
+	...defaultOptions,
 	"custom-groups": {
 		id: "id",
 	},
 	groups: ["id", "unknown"],
-	type: "natural",
 };
 
-const noAutoFixRulesConfig: FlatConfig[] = [
-	{
-		name: "pcp/perfectionist/no-autofix",
-		rules: {
-			"no-autofix/perfectionist/sort-interfaces": [
-				"warn",
-				defaultPerfectionistSortObjectRuleOptions,
-			],
-			"no-autofix/perfectionist/sort-object-types": [
-				"warn",
-				defaultPerfectionistSortObjectRuleOptions,
-			],
-			"no-autofix/perfectionist/sort-objects": [
-				"warn",
-				defaultPerfectionistSortObjectRuleOptions,
-			],
-			"no-autofix/perfectionist/sort-union-types": [
-				"warn",
-				{
-					"ignore-case": true,
-					"nullable-last": true,
-					type: "natural",
-				},
-			],
-		},
+const noAutoFixRulesConfig: FlatConfig = {
+	name: "pcp/perfectionist/no-autofix",
+	rules: {
+		"no-autofix/perfectionist/sort-interfaces": [
+			"warn",
+			defaultPerfectionistSortObjectRuleOptions,
+		],
+		"no-autofix/perfectionist/sort-object-types": [
+			"warn",
+			defaultPerfectionistSortObjectRuleOptions,
+		],
+		"no-autofix/perfectionist/sort-objects": [
+			"warn",
+			defaultPerfectionistSortObjectRuleOptions,
+		],
 	},
-];
+};
