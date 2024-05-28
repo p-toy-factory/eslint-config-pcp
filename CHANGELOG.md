@@ -1,5 +1,12 @@
 # eslint-config-pcp
 
+## 2.0.0-beta.6
+
+### Minor Changes
+
+- feat: enable some perfectionist rules by default
+- feat(react): add `@eslint-react/eslint-plugin`
+
 ## 2.0.0-beta.5
 
 ### Major Changes

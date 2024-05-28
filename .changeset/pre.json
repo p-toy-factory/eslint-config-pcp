@@ -5,7 +5,9 @@
     "eslint-config-pcp": "2.0.0-beta.3"
   },
   "changesets": [
+    "gorgeous-camels-happen",
     "green-ligers-buy",
+    "happy-pillows-pretend",
     "neat-garlics-shake",
     "orange-apples-compete",
     "plenty-frogs-jam",
