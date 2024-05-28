@@ -1,5 +1,7 @@
 import {
+	GLOB_JS,
 	GLOB_JSX,
+	GLOB_TS,
 	GLOB_TSX,
 	interopDefault,
 	OptionsFiles,
@@ -13,18 +15,22 @@ export interface ReactESLintConfigBuilderOptions
 		OptionsOverrides {}
 
 export async function react({
-	files,
+	files: overrideFiles,
 	overrides,
 }: ReactESLintConfigBuilderOptions = {}): Promise<FlatConfig[]> {
-	const eslintPluginReactHooks = await interopDefault(
-		// @ts-expect-error no types
-		import("eslint-plugin-react-hooks"),
-	);
+	const files = overrideFiles ?? [GLOB_JS, GLOB_JSX, GLOB_TS, GLOB_TSX];
+
+	const [eslintPluginReactHooks, { default: eslintPluginReact }] =
+		await Promise.all([
+			// @ts-expect-error no types
+			interopDefault(import("eslint-plugin-react-hooks")),
+			import("@eslint-react/eslint-plugin"),
+		]);
 
 	return [
 		{
 			name: "pcp/react",
-			files: files ?? [GLOB_JSX, GLOB_TSX],
+			files,
 			plugins: {
 				"react-hooks": eslintPluginReactHooks,
 			},
@@ -34,5 +40,6 @@ export async function react({
 				...overrides,
 			},
 		},
+		{ files, ...eslintPluginReact.configs.recommended },
 	];
 }
